@@ -1,0 +1,39 @@
+---
+description: Recommends optimal model selection based on task type. Applies to all conversations.
+alwaysApply: true
+---
+
+# Model Selection Guide
+
+When starting a new task, briefly consider which model fits best:
+
+## Haiku (cheapest, fastest)
+- Git operations (commit, push, status)
+- Simple file edits with known changes
+- Adding routes, imports, menu items
+- Reformatting, renaming, moving code
+- Boilerplate generation
+- Configuration changes
+
+## Sonnet (default for most work)
+- Feature implementation (new pages, services, components)
+- Debugging and troubleshooting
+- Planning and creating plans
+- Writing content drafts
+- Code review
+- Most tasks that require reading multiple files and reasoning
+
+## Opus (only when Sonnet isn't enough)
+- Architecture decisions with significant tradeoffs
+- Debugging that Sonnet failed to resolve
+- Complex multi-system refactors
+- High-stakes writing (investor materials, legal)
+- Deep strategic analysis
+
+## Gemini (web research, long documents)
+- Tasks requiring real-time web search
+- Analyzing very long documents (>100K tokens)
+- Competitive research
+- Fact-checking current information
+
+If you are Haiku or Sonnet and the task clearly needs a more capable model, say so at the top of your response.

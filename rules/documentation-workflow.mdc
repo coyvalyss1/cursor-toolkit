@@ -1,0 +1,302 @@
+---
+description: Prevent documentation sprawl and maintain clean, organized docs. Decision tree for where to document, provenance requirement for metrics.
+alwaysApply: true
+---
+
+# Documentation Workflow
+
+**Purpose:** Prevent documentation sprawl and maintain clean, organized docs
+
+---
+
+## ❌ NEVER Create Separate Docs for Bug Fixes
+
+**DO NOT create standalone documentation files for:**
+- Bug fixes
+- UI fixes
+- CSS fixes
+- Animation fixes
+- Mobile fixes
+- Any other fixes or patches
+
+**Why:**
+- Creates documentation sprawl
+- Hard to find information later
+- Duplicates content
+- Requires cleanup later
+
+---
+
+## ✅ Correct Documentation Pattern
+
+### For Bug Fixes & Patches → SESSION_LOG.md
+
+**Always document fixes in:** `SESSION_LOG.md`
+
+**Format:**
+```markdown
+## Session: [Date] - [Brief Title]
+
+### Session Goals
+1. Fix X
+2. Fix Y
+
+### Completed Tasks
+
+#### 1. Fixed [Issue Name]
+**Status:** COMPLETED
+
+**Problem:** [What was broken]
+
+**Root Cause:** [Why it was broken]
+
+**Solution:** [How you fixed it]
+
+**Files Modified:**
+- `path/to/file.js`
+  - Changed X to Y
+  - Added Z
+
+**Result:** [What works now]
+
+---
+
+### Key Learnings
+- [Important patterns discovered]
+- [Mistakes to avoid]
+
+---
+
+### Files Modified
+[Summary list]
+
+---
+
+**Session Duration:** [Only if tracked, otherwise say "not tracked"]
+**Status:** COMPLETE
+```
+
+---
+
+### For New Features → Feature Docs + MASTER TODO
+
+**Step 1: Create Feature Documentation**
+
+Create docs ONLY for substantial new features:
+- New user-facing features
+- New integrations
+- New architecture patterns
+- New workflows
+
+**Location:** `docs/[FEATURE_NAME]_IMPLEMENTATION.md`
+
+**Example:** `docs/API_INTEGRATION_IMPLEMENTATION_GUIDE.md`
+
+**Step 2: Add Summary to MASTER TODO**
+
+Update the appropriate MASTER TODO file:
+- `TODO_MASTER_BUSINESS.md` - Business features, revenue, marketing
+- `TODO_MASTER_TECHNICAL.md` - Technical features, architecture, infrastructure
+
+**Format:**
+```markdown
+### [Feature Name]
+**Status:** Implemented | In Progress | Planned
+
+**What:** Brief description
+
+**Why:** Business/technical justification
+
+**Documentation:** Link to detailed docs
+
+**Key Files:**
+- `path/to/file.js`
+```
+
+---
+
+## Decision Tree
+
+```
+Is this a bug fix or patch?
+├─ YES → Add to SESSION_LOG.md
+└─ NO → Is this a substantial new feature?
+   ├─ YES → Create feature doc + update MASTER TODO
+   └─ NO → Add to SESSION_LOG.md
+```
+
+---
+
+## Examples
+
+### ✅ CORRECT: Bug Fix Documentation
+
+**Scenario:** Fixed chat animation sliding bug
+
+**Action:**
+1. Add entry to `SESSION_LOG.md`
+2. Include problem, solution, files modified
+3. No separate doc file
+
+**Result:** Clean, organized, easy to find
+
+---
+
+### ✅ CORRECT: New Feature Documentation
+
+**Scenario:** Implementing payment gateway integration
+
+**Action:**
+1. Create `docs/PAYMENT_INTEGRATION_IMPLEMENTATION_GUIDE.md`
+2. Add summary to `TODO_MASTER_TECHNICAL.md`
+3. Link from MASTER TODO to detailed guide
+
+**Result:** Feature documented, discoverable, summarized
+
+---
+
+### ❌ WRONG: Creating Separate Fix Docs
+
+**Scenario:** Fixed hamburger menu z-index
+
+**Action (WRONG):**
+1. Create `docs/HAMBURGER_MENU_FIX.md`
+2. Create `docs/HAMBURGER_MENU_FIX_FINAL.md`
+3. Create `docs/HAMBURGER_MENU_FIX_COMPLETE.md`
+
+**Problems:**
+- 3 files for one fix
+- Hard to find which is current
+- Clutters docs folder
+- Requires cleanup later
+
+**Correct Action:**
+1. Add to `SESSION_LOG.md` under today's session
+2. Done.
+
+---
+
+## What Qualifies as a "Substantial New Feature"?
+
+### ✅ Create Feature Docs For:
+- New user-facing features (search functionality, calendar reminders)
+- New integrations (payment processors, third-party APIs, authentication providers)
+- New AI capabilities (agentic patterns, new LLM integrations)
+- New architecture patterns (multi-session chat, document context)
+- New revenue streams (subscription tiers, premium features)
+- Migration guides (V2 → V3 upgrades)
+
+### ❌ Don't Create Feature Docs For:
+- Bug fixes (any size)
+- UI improvements
+- CSS fixes
+- Animation fixes
+- Mobile fixes
+- Performance optimizations
+- Refactoring
+- Code cleanup
+- Linting fixes
+
+**Rule of Thumb:** If it's fixing something that's broken, it goes in SESSION_LOG. If it's building something new that users will discover and use, it gets feature docs.
+
+---
+
+## Before Creating a New Doc File
+
+**Ask yourself:**
+1. Is this a bug fix? → SESSION_LOG.md
+2. Is this a substantial new feature? → Feature doc + MASTER TODO
+3. Is this a small improvement? → SESSION_LOG.md
+4. Is this a refactor? → SESSION_LOG.md
+
+**If unsure:** Default to SESSION_LOG.md
+
+---
+
+## Cleanup Checklist
+
+When you see extraneous doc files:
+
+- [ ] Check if content is already in SESSION_LOG.md
+- [ ] If not, add summary to SESSION_LOG.md
+- [ ] Delete the extraneous file
+- [ ] Update any links that pointed to it
+
+---
+
+## File Naming Conventions
+
+### Session Log:
+- `SESSION_LOG.md` (single file, append new sessions at top)
+
+### Feature Docs:
+- `docs/[FEATURE]_IMPLEMENTATION_GUIDE.md`
+- `docs/[FEATURE]_ARCHITECTURE.md`
+- `docs/[FEATURE]_TESTING.md`
+
+### MASTER TODOs:
+- `TODO_MASTER_BUSINESS.md`
+- `TODO_MASTER_TECHNICAL.md`
+
+### Cursor Rules:
+- `.cursor/rules/[topic].md` or `.cursor/rules/[topic].mdc`
+
+---
+
+## Benefits of This Pattern
+
+**For Bug Fixes in SESSION_LOG:**
+- ✅ Chronological history
+- ✅ Easy to find recent work
+- ✅ No file sprawl
+- ✅ Context preserved (what else was done that day)
+- ✅ No cleanup needed
+
+**For Features in Docs + MASTER TODO:**
+- ✅ Detailed documentation for complex features
+- ✅ Discoverable via MASTER TODO index
+- ✅ Reusable for onboarding/reference
+- ✅ Separate from daily fixes
+
+---
+
+## Provenance Requirement
+
+**All claims, metrics, and numbers in session logs and documentation MUST include a source.**
+
+When stating facts, durations, percentages, or any quantitative claim, the agent must cite where the information came from. If it cannot be measured or verified, say so explicitly.
+
+**Rules:**
+
+1. **Never fabricate metrics.** If you don't know a number, say "unknown" or "not measured."
+2. **Cite the source** for any stated fact: tool output, file contents, terminal output, user statement, or your own inference.
+3. **Mark estimates clearly.** Use "~" or "(estimate)" when approximating.
+4. **Session duration:** Only state if the user provides it. Never guess.
+5. **Performance claims:** Must reference a specific test, log, or measurement.
+
+**Examples:**
+
+```markdown
+# WRONG -- fabricated with no source
+Session Duration: ~2 hours
+Build time improved by 40%
+
+# CORRECT -- sourced
+Session Duration: not tracked
+Build completed in 13.7s (from terminal output)
+Bundle size: 1,000.73 kB (from vite build output)
+API response time: ~200ms (user-reported, not measured)
+```
+
+**Why:** AI agents will fabricate specific numbers with full confidence. Requiring provenance catches this at the template level before false data enters the project record.
+
+---
+
+## Summary
+
+**Golden Rule:** Fixes go in SESSION_LOG.md, features get docs + MASTER TODO summary.
+
+**Quick Check:**
+- Creating a doc for a fix? → STOP, use SESSION_LOG.md instead
+- Creating a doc for a feature? → Also update MASTER TODO
+- Unsure? → Default to SESSION_LOG.md

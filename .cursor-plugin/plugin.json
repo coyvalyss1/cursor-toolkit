@@ -1,0 +1,10 @@
+{
+  "name": "cursor-toolkit",
+  "description": "Rules, skills, and best practices for building with AI coding assistants. Safety guardrails, hallucination reduction, and workflow patterns.",
+  "version": "1.0.0",
+  "author": { "name": "Valyss LLC" },
+  "homepage": "https://domoreworld.com",
+  "repository": "https://github.com/coyvalyss1/cursor-toolkit",
+  "license": "MIT",
+  "keywords": ["rules", "skills", "best-practices", "safety", "documentation", "firebase", "swiftui"]
+}

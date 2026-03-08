@@ -1,0 +1,63 @@
+---
+description: Git workflow, commit safety, and structural change guidelines for all projects.
+alwaysApply: true
+---
+
+# Git Workflow
+
+## Session Start
+
+Run these commands at the start of each session:
+
+```bash
+git status
+git branch --show-current
+git log --oneline -3
+```
+
+If >10 files have uncommitted changes, alert the user before starting new work.
+
+**Multi-repo awareness:** If your workspace contains multiple git repos, always verify which repo you're in before running git commands.
+
+## Commit Principles
+
+- Commit after each logical unit of work (one feature, one fix, one refactor)
+- Write commit messages that explain WHY, not just WHAT
+- Never leave a session with large uncommitted changes
+- When a change touches 5+ files, commit in logical groups and build-verify between commits
+
+## Branch Rules
+
+- `main` for production-ready code
+- Feature branches (`feature/description`) for experimental work
+- Never force-push to `main`
+- Ignore auto-created `cursor/*` branches
+
+## Before Committing
+
+- If the commit adds imports to new files, those files MUST be included in the same commit
+- Verify the build would succeed from scratch: all imported files must be tracked
+- Untracked files that are imported by tracked files = broken commit
+
+## Before Deploying
+
+- All changes committed, `git diff` shows nothing
+- Build succeeds locally
+
+## Structural Changes (Red Flags)
+
+Structural changes: renaming tabs, restructuring navigation, changing data models, reorganizing files, changing routing.
+
+- COMMIT current working state before starting structural changes
+- If you've touched >5 files without committing, stop and commit
+- If `git diff --stat` shows >500 lines changed, stop and commit
+- Build-verify after each phase of a structural change
+- Never combine "create new files + wire into app + remove old files" in a single uncommitted batch
+
+## Project-Specific Customization
+
+Add project-specific git rules here:
+- Document structure patterns (e.g., check `SESSION_LOG.md` at session start)
+- Build verification steps
+- Deployment workflows
+- Any mobile-specific considerations

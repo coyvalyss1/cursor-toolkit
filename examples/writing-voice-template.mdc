@@ -1,0 +1,122 @@
+---
+description: Writing voice and communication style guide for content generation
+alwaysApply: true
+---
+
+# Writing Voice Guide
+
+**When to use:** When creating any user-facing content (documentation, emails, marketing copy, social media, comments, meeting notes).
+
+---
+
+## Core Voice Principles
+
+### Tone
+[YOUR TONE HERE]
+
+Examples:
+- Conversational, not corporate
+- Professional but friendly
+- Direct and concise
+- Warm and encouraging
+- Technical but accessible
+
+### Structure
+[YOUR STRUCTURE PREFERENCES HERE]
+
+Examples:
+- Short punchy sentences mixed with longer flowing ones
+- Bullet points for clarity
+- Active voice over passive voice
+- One idea per paragraph
+- Headers for scannability
+
+### Language Choices
+[YOUR LANGUAGE PREFERENCES HERE]
+
+Examples:
+- Simple words over complex ones
+- Industry terms when appropriate, but avoid jargon
+- Specific examples over abstract concepts
+- "We/our" framing instead of "you/your"
+- Present tense when possible
+
+### Things to Avoid
+[WHAT NOT TO DO]
+
+Examples:
+- Corporate buzzwords ("synergy", "leverage", "touch base")
+- Overly casual slang
+- Passive voice ("it was decided" vs "we decided")
+- Dashes (--) or em dashes
+- All-caps for emphasis
+- Exclamation points (unless genuinely excited)
+
+---
+
+## Content-Specific Guidelines
+
+### Marketing & Social Media
+
+[YOUR MARKETING VOICE]
+
+Examples:
+- End with a worldview, not a pitch
+- Validate other perspectives before redirecting
+- Never dismiss concerns; acknowledge and build on them
+- Use real examples, not hypotheticals
+- Personal stories over statistics
+
+### Documentation
+
+[YOUR DOCUMENTATION VOICE]
+
+Examples:
+- Start with the outcome, then the how
+- Code examples before explanations
+- "Do this" not "You could consider doing this"
+- Error messages should explain what happened and how to fix it
+
+### Internal Communication (Emails, Meeting Notes)
+
+[YOUR INTERNAL VOICE]
+
+Examples:
+- Context at the top, details below
+- Action items with owners and timelines
+- Use checkbox format: "[ ] Owner — Action item (timeline)"
+- Assume the reader skims; lead with the key fact
+
+### Code Comments
+
+[YOUR CODE COMMENT STYLE]
+
+Examples:
+- Explain WHY, not WHAT
+- Only comment non-obvious intent or trade-offs
+- No narration ("// Import the module", "// Define function")
+- Link to relevant docs or issues when helpful
+
+---
+
+## Examples
+
+### ❌ BAD - [Context]
+[EXAMPLE OF WHAT NOT TO DO]
+
+### ✅ GOOD - [Context]
+[EXAMPLE OF YOUR PREFERRED STYLE]
+
+---
+
+## When to Apply This Guide
+
+- [x] Writing documentation
+- [x] Creating marketing content
+- [x] Drafting emails or messages
+- [x] Writing social media posts
+- [x] Generating meeting notes
+- [x] Creating user-facing error messages
+- [x] Writing code comments (when needed)
+
+Apply these rules **consistently** across all generated content to maintain a recognizable voice.

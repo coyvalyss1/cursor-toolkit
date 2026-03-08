@@ -1,0 +1,68 @@
+# Cursor AI Rules - Global (All Projects)
+
+## Project Routing
+
+This workspace contains [NUMBER] projects. Apply the correct context:
+
+- **[Language/Framework] files** (`*.[ext]`): See `[project-name]/.cursorrules` and `[project-name]/.cursor/rules/`
+- **[Language/Framework] files** (`*.[ext]` in `[folder/]`): See `[project-name]/.cursorrules` and `[project-name]/.cursor/rules/`
+- **[Feature/Module]** (`[folder/**]`): See `[project-name]/.cursor/rules/[feature-specific].mdc`
+- **Cross-project work**: Follow the rules below
+
+---
+
+## Git Safety
+
+See `.cursor/rules/git-workflow.mdc` for full workflow. Key points:
+- Commit after each logical unit of work; explain WHY in messages
+- Never accumulate >500 lines of uncommitted changes across >5 files
+- COMMIT before structural changes (renaming tabs, changing models, reorganizing files)
+- Build-verify between phases of multi-file changes
+
+---
+
+## Secrets Safety
+
+- NEVER hardcode API keys, passwords, or tokens in code
+- NEVER use fallback values for secrets: `process.env.KEY || 'default-value'`
+- NEVER run: `cat .env`, `echo $SECRET`
+- ALWAYS use environment variables or secrets management
+- ALWAYS add secret files to `.gitignore` BEFORE creating them
+
+---
+
+## Documentation
+
+- Fixes and patches go in `[YOUR_SESSION_LOG_FILE].md` (append at top, never delete old entries)
+- Substantial new features get their own `docs/` file + session log entry
+- NEVER create standalone fix docs (`*_FIX.md`, `*_SUMMARY.md`, `*_COMPLETE.md`)
+
+---
+
+## User Preferences
+
+- [YOUR PREFERENCE: e.g., "Concise inline responses + detailed session logs"]
+- [YOUR PREFERENCE: e.g., "Production-ready code"]
+- [YOUR PREFERENCE: e.g., "Proactive suggestions welcome"]
+- [YOUR PREFERENCE: e.g., "Mobile-first responsive design"]
+
+---
+
+## [YOUR NAME]'s Writing Voice: [CONTEXT WHERE THIS APPLIES]
+
+[DESCRIBE YOUR WRITING STYLE FOR ANY CONTENT GENERATION]
+
+Example structure:
+- **Tone**: [conversational / formal / technical / friendly / etc.]
+- **Structure**: [short paragraphs / bullet points / numbered lists / etc.]
+- **Language**: [simple / technical / industry-specific / etc.]
+- **Things to avoid**: [buzzwords / jargon / passive voice / etc.]
+- **Preferred patterns**: [specific phrases or structures you like]
+
+Example:
+- Keep it short and snappy; bullet points only
+- Plain text format; no markdown headers or symbols that don't paste cleanly
+- Conversational, not corporate. Write like talking to a friend.
+- Use semicolons and commas for joins; NEVER use dashes (--) or em dashes
+- Always use "we/our" framing, not "you/your"
+- Humble and curious, not lecturing

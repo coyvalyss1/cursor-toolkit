@@ -1,0 +1,130 @@
+---
+description: SwiftUI view composition, navigation, and state management patterns for iOS apps.
+globs: "**/*.swift"
+alwaysApply: false
+---
+
+# SwiftUI Patterns
+
+## View Composition
+
+### Standard View Structure
+```swift
+struct MyView: View {
+    @Environment(AuthService.self) private var authService
+    @Environment(AppState.self) private var appState
+    @State private var viewModel = MyViewModel()
+    @State private var isLoading = true
+
+    var body: some View {
+        NavigationStack {
+            content
+                .navigationTitle("Title")
+                .task { await loadData() }
+        }
+    }
+}
+```
+
+### Extract Complex Subviews
+Break views into computed properties or child views when they exceed ~50 lines:
+```swift
+// Computed property for sections within the same file
+private var headerSection: some View { ... }
+
+// Separate struct for reusable or complex components
+struct TaskRowView: View { ... }
+```
+
+## Navigation
+
+### NavigationStack (primary navigation)
+Use for drill-down flows within a tab:
+```swift
+NavigationStack {
+    List(items) { item in
+        NavigationLink(value: item) { ItemRow(item: item) }
+    }
+    .navigationDestination(for: Item.self) { item in
+        ItemDetailView(item: item)
+    }
+}
+```
+
+### Sheets (modal presentation)
+Use for create/edit forms, settings, and non-navigation flows:
+```swift
+.sheet(isPresented: $showSheet) {
+    NavigationStack {
+        EditView()
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Cancel") { showSheet = false }
+                }
+            }
+    }
+}
+```
+
+### FullScreenCover (immersive flows)
+Use for onboarding, media viewers, and flows that need the full screen:
+```swift
+.fullScreenCover(isPresented: $showOnboarding) {
+    OnboardingView(isPresented: $showOnboarding)
+}
+```
+
+## State Management
+
+### @State for view-local state
+```swift
+@State private var searchText = ""
+@State private var isLoading = false
+@State private var showSheet = false
+```
+
+### @Environment for injected services
+```swift
+@Environment(AuthService.self) private var authService
+@Environment(AppState.self) private var appState
+```
+
+### @Bindable for mutating @Observable in body
+```swift
+var body: some View {
+    @Bindable var state = appState
+    Toggle("Setting", isOn: $state.someFlag)
+}
+```
+
+### @AppStorage for UserDefaults persistence
+```swift
+@AppStorage("app_onboarding_completed") private var hasCompletedOnboarding = false
+```
+
+## Async Data Loading
+
+### Use .task modifier (not onAppear + Task)
+```swift
+.task {
+    await loadData()
+}
+```
+
+### Retry on sheet/view appearance
+```swift
+// For views that might fail to load initially
+.task {
+    if items.isEmpty {
+        await loadItems()
+    }
+}
+```
+
+## Common Mistakes
+
+- Using `try?` for Firestore decoding (hides errors) -- use do-catch instead
+- Using wrong asset names (e.g., `"profile-avatar"` vs `"ProfileAvatar"`) -- verify in Assets.xcassets
+- Forgetting to add new files to the Xcode project (pbxproj)
+- Modifying tab enum cases without updating ALL switch statements that reference them
+- Using `.onAppear` with `Task {}` instead of `.task` (causes re-execution issues)

@@ -1,0 +1,77 @@
+---
+description: Security rules for any content that will be shared publicly (open-source repos, Reddit posts, social media, shared project pages, documentation)
+alwaysApply: true
+---
+
+# Public Content Security
+
+When creating, editing, or reviewing content that will be shared outside the codebase (open-source repos, Reddit posts, LinkedIn articles, GitHub READMEs, shared project pages, marketing materials), NEVER include:
+
+## Infrastructure Details
+- Firebase project IDs (e.g., `your-project-12345`)
+- Storage bucket names (e.g., `app.yourproduct.com`)
+- Cloud Function endpoint URLs
+- Firestore collection names or document paths
+- Server IPs, ports, or internal URLs
+- CI/CD pipeline details or deployment commands
+- Database connection strings
+
+## Application Internals
+- Internal directory structures or file paths
+- Monorepo layout details (which directories map to which products)
+- Architecture diagrams showing real service names or internal routing
+- Firestore security rule details or gaps
+- Error messages that reveal stack traces or internal paths
+- Package versions that could reveal known vulnerabilities
+
+## Business & Personal
+- Partner or client names (use "a financial advisor" not specific names)
+- Internal plan file IDs or agent transcript IDs
+- Revenue numbers, pricing strategy docs, or cost data
+- Roadmap details that reveal competitive strategy
+- iOS bundle IDs or App Store internal identifiers
+- Internal feature names before public announcement
+
+## Credentials & Auth
+- API keys, tokens, or secrets (even expired ones)
+- OAuth client IDs or redirect URIs
+- Service account details
+- Admin URLs or admin-only routes
+- Test credentials or staging environment URLs
+
+## Git Protection: Folders That Must NEVER Be Tracked
+
+When initializing a repo (`git init`) or adding files (`git add`), ALWAYS ensure these are in `.gitignore` BEFORE the first commit:
+
+- Strategy and planning folders (meeting notes, financial docs, marketing plans)
+- Content drafts folders (essays, social media drafts, marketing copy)
+- `*.env*`, `credentials*`, `serviceAccount*`
+- Any folder containing marketing strategy, posting calendars, or pre-written promotional content
+- Any folder containing meeting notes, partner names, or business development docs
+
+When an agent runs `git init`, `git add .`, or creates a new repo, it MUST:
+1. Check if a `.gitignore` exists; create one if not
+2. Ensure all protected folders above are listed
+3. NEVER run `git add .` without first verifying `.gitignore` covers sensitive directories
+4. If a protected folder is already tracked, run `git rm -r --cached <folder>` before proceeding
+
+## When Creating Open-Source Versions of Internal Tools
+
+Always create a **sanitized copy** for public sharing:
+- Replace real project IDs with placeholders (`your-project-id`)
+- Replace real domains with generic examples (`app.yourproduct.com`)
+- Replace real directory paths with generic ones (`my-app/client/`)
+- Replace real product names with generic examples (`Product A`, `Product B`)
+- Use example data in templates, never real TODO items or plan references
+- Include a `.gitignore` that excludes any local config with real values
+
+## Before Sharing Anything Publicly
+
+Ask yourself (or have the agent verify):
+1. Could this help someone probe our infrastructure?
+2. Could this reveal our internal architecture to a competitor?
+3. Does this name a real person, partner, or client?
+4. Does this contain real infrastructure identifiers?
+5. If this appeared on Hacker News, would it create a security risk?
+
+If the answer to any is yes, sanitize before sharing.

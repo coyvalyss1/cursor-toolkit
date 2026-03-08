@@ -1,0 +1,47 @@
+---
+description: Product architecture context for all products in your workspace
+alwaysApply: true
+---
+
+# Product Architecture
+
+## Overview
+
+[DESCRIBE YOUR PRODUCT/PROJECT STRUCTURE HERE]
+
+One shared infrastructure (if applicable). Multiple products or services:
+
+### Product A (Main Product)
+- Domain: [YOUR_DOMAIN].com
+- Web: [path/to/web/]
+- Mobile (if applicable): [path/to/mobile/] (iOS/Android, bundle: com.[yourcompany].[app])
+- Purpose: [What this product does]
+- Key features: [List main features]
+
+### Product B (Secondary Product)
+- Domain: [YOUR_DOMAIN].com
+- Web: [path/to/web/]
+- Purpose: [What this product does]
+- Key features: [List main features]
+
+## Shared Infrastructure (if applicable)
+- Backend: [path/to/functions/ or API/]
+- Database: [Firebase Firestore / PostgreSQL / MongoDB / etc.]
+- Auth: [Auth provider]
+- Storage: [Storage bucket or CDN]
+
+## Routing Guide (When the user says...)
+- "[Product A]" / "[alias]" → [path/to/product-a/]
+- "[Product B]" / "[alias]" → [path/to/product-b/]
+- "Backend" / "API" / "functions" → [path/to/backend/]
+- "[Feature X]" → [path/to/feature-x/]
+- "Database rules" / "schema" → [path/to/db/rules or schema]
+
+## Tech Stack
+- Frontend: [React / Vue / Angular / SwiftUI / Flutter / etc.]
+- Backend: [Node.js / Python / Go / etc.]
+- Database: [Firestore / PostgreSQL / MongoDB / etc.]
+- Deployment: [Firebase / AWS / Vercel / etc.]
+
+## Current Phase
+[OPTIONAL: What you're currently working on, priorities, known issues]
