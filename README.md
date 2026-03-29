@@ -139,7 +139,6 @@ Research-backed domain rules the AI applies automatically.
 |---------------|--------------|------------------|
 | `ux-typography.md` | Font sizes, contrast, line height | WCAG 2.1, iOS HIG, Material Design 3 |
 | `ux-design-principles.md` | Nielsen's 10 heuristics, accessibility | Nielsen Norman Group |
-| `marketing-messaging.md` | Audience-specific messaging | HBR, McKinsey, Forrester, Pew Research |
 
 ### Setup (`setup/`)
 
